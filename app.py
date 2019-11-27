@@ -4,7 +4,7 @@ import json
 import subprocess
 import os
 
-app = Flask('email')
+app = Flask(__name__)
 
 @app.route("/email", methods=["POST"])
 def sendEmail():

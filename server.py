@@ -25,4 +25,5 @@ def sendEmail():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=3001)
+    print(os.getenv("PORT"))
+    app.run(debug=True, port=os.getenv("PORT"))

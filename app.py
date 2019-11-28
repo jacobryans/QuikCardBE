@@ -1,4 +1,5 @@
 from flask import Flask, jsonify, request
+import requests
 from dotenv import load_dotenv
 import json
 import subprocess
@@ -11,18 +12,24 @@ CORS(app)
 @app.route("/email", methods=["POST"])
 def sendEmail():
     key = os.getenv("SENDGRID_KEY")
-    subprocess.call([
-    'curl',
-    '-X',
-    'POST',
-    "https://api.sendgrid.com/v3/mail/send",
-    "-H",
-    f"Authorization: Bearer {key}",
-    "-H",
-    "Content-Type: application/json",
-    '-d',
-    json.dumps(request.get_json(force=True))
-    ])
+    response = requests.post(
+        "https://api.sendgrid.com/v3/mail/send",
+        headers={"Authorization": f"Bearer {key}", "Content-Type": "application/json"},
+        data=json.dumps(request.get_json(force=True))
+    )
+    print(response)
+    # subprocess.call([
+    # 'curl',
+    # '-X',
+    # 'POST',
+    # "https://api.sendgrid.com/v3/mail/send",
+    # "-H",
+    # f"Authorization: Bearer {key}",
+    # "-H",
+    # "Content-Type: application/json",
+    # '-d',
+    # json.dumps(request.get_json(force=True))
+    # ])
     return ''
 
 

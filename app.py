@@ -18,18 +18,6 @@ def sendEmail():
         data=json.dumps(request.get_json(force=True))
     )
     print(response)
-    # subprocess.call([
-    # 'curl',
-    # '-X',
-    # 'POST',
-    # "https://api.sendgrid.com/v3/mail/send",
-    # "-H",
-    # f"Authorization: Bearer {key}",
-    # "-H",
-    # "Content-Type: application/json",
-    # '-d',
-    # json.dumps(request.get_json(force=True))
-    # ])
     return ''
 
 
